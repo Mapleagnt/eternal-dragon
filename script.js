@@ -1,25 +1,91 @@
 console.log("SCRIPT CARREGOU OK");
 
-/* ================= ABAS (CORRIGIDO SIMPLES E FUNCIONAL) ================= */
+/* ================= FIREBASE (MODULAR v9+) ================= */
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.12.0/firebase-app.js";
+import {
+    getAuth,
+    signInWithPopup,
+    GoogleAuthProvider,
+    signOut
+} from "https://www.gstatic.com/firebasejs/12.12.0/firebase-auth.js";
+
+/* 🔥 CONFIG REAL DO SEU FIREBASE */
+const firebaseConfig = {
+    apiKey: "SUA_API_KEY",
+    authDomain: "eternal-dragon-d84ea.firebaseapp.com",
+    projectId: "eternal-dragon-d84ea",
+    appId: "SEU_APP_ID"
+};
+
+/* INIT */
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const provider = new GoogleAuthProvider();
+
+/* ================= LOGIN GOOGLE ================= */
+
+window.loginGoogle = async function () {
+    try {
+        const result = await signInWithPopup(auth, provider);
+        const user = result.user;
+
+        console.log("LOGADO:", user.displayName);
+        console.log("EMAIL:", user.email);
+
+        atualizarUI(user);
+
+        alert("Bem-vindo " + user.displayName);
+
+    } catch (err) {
+        console.error("ERRO LOGIN:", err);
+        alert("Erro no login: " + err.message);
+    }
+};
+
+/* ================= LOGOUT ================= */
+
+window.logoutGoogle = async function () {
+    await signOut(auth);
+    atualizarUI(null);
+};
+
+/* ================= UI LOGIN ================= */
+
+function atualizarUI(user) {
+    const area = document.querySelector(".login-area");
+    if (!area) return;
+
+    if (user) {
+        area.innerHTML = `
+            <div style="display:flex;align-items:center;gap:10px;color:white;">
+                <img src="${user.photoURL}" style="width:32px;height:32px;border-radius:50%;">
+                <span>${user.displayName}</span>
+                <button onclick="logoutGoogle()">Sair</button>
+            </div>
+        `;
+    } else {
+        area.innerHTML = `
+            <button onclick="loginGoogle()">
+                🔵 Entrar com Google
+            </button>
+        `;
+    }
+}
+
+/* ================= ABAS ================= */
 
 window.trocarPagina = function (event, id) {
 
     if (event) event.preventDefault();
 
-    console.log("ABRINDO:", id);
-
-    // esconde todas
     document.querySelectorAll(".pagina").forEach(p => {
         p.classList.remove("ativa");
     });
 
-    // mostra a certa
     const page = document.getElementById(id);
-    if (page) {
-        page.classList.add("ativa");
-    }
+    if (page) page.classList.add("ativa");
 
-    // menu ativo
     document.querySelectorAll(".menu a").forEach(a => {
         a.classList.remove("ativo");
     });
@@ -28,7 +94,6 @@ window.trocarPagina = function (event, id) {
         event.currentTarget.classList.add("ativo");
     }
 
-    // social (se existir)
     const social = document.querySelector(".social-box");
     if (social) {
         social.style.display = (id === "inicio") ? "block" : "none";
@@ -38,29 +103,15 @@ window.trocarPagina = function (event, id) {
 /* ================= BOTÃO JOGO ================= */
 
 window.abrirJogo = function () {
-    window.open("https://play.google.com/store/apps/details?id=com.farlightgames.samo.gp", "_blank");
+    window.open(
+        "https://play.google.com/store/apps/details?id=com.farlightgames.samo.gp",
+        "_blank"
+    );
 };
-
-/* ================= LOGIN UI SIMPLES (não interfere no resto) ================= */
-
-function atualizarUI(user) {
-    const area = document.querySelector(".login-area");
-    if (!area) return;
-
-    if (!user) {
-        area.innerHTML = `
-            <button onclick="alert('Login ainda não ativo')">
-                🔵 Entrar com Google
-            </button>
-        `;
-    }
-}
 
 /* ================= INIT ================= */
 
 window.onload = function () {
     atualizarUI(null);
-
-    // garante que começa no início
     trocarPagina({ preventDefault() {} }, "inicio");
 };
