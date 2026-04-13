@@ -1,0 +1,450 @@
+/* ========================= */
+/* ====== VERSÃO PC ======== */
+/* ========================= */
+
+/* RESET ORIGINAL (CORRIGIDO) */
+* {
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+}
+
+html {
+width: 100%;
+overflow-x: hidden;
+}
+
+body {
+font-family: Arial;
+color: white;
+overflow-x: hidden;
+}
+
+/* FUNDO COM VÍDEO */
+.bg-video {
+position: fixed;
+inset: 0;
+
+width: 100%;
+height: 100%;
+
+object-fit: cover;
+
+z-index: -1;
+
+/* animação suave igual antes */
+animation: bgZoomVideo 25s ease-in-out infinite alternate;
+}
+
+@keyframes bgZoomVideo {
+0% { transform: scale(1); }
+100% { transform: scale(1.08); }
+}
+
+/* HERO */
+.hero {
+height: 75vh;
+display: flex;
+justify-content: center;
+align-items: center;
+text-align: center;
+}
+
+/* TEXTO */
+.overlay h1 {
+font-size: 48px;
+color: #f5d76e;
+text-shadow: 0 0 15px rgba(255,215,0,0.6);
+
+/* glow */
+animation: glow 2s infinite alternate;
+}
+
+@keyframes glow {
+from { text-shadow: 0 0 10px gold; }
+to { text-shadow: 0 0 25px gold; }
+}
+
+.overlay p {
+margin-top: 10px;
+color: #ffffff;
+font-size: 18px;
+}
+
+/* BOTÕES */
+.botoes {
+margin-top: 20px;
+}
+
+button {
+padding: 12px 25px;
+margin: 10px;
+border: none;
+cursor: pointer;
+border-radius: 10px;
+transition: transform 0.3s, box-shadow 0.3s;
+}
+
+button:hover {
+transform: scale(1.05);
+box-shadow: 0 0 15px rgba(255,215,0,0.7);
+}
+
+/* BOTÕES */
+.btn-ouro {
+background: linear-gradient(#f5d76e, #caa43b);
+color: white;
+}
+
+.btn-azul {
+background: linear-gradient(#5fa8ff, #2a5fff);
+color: white;
+border-radius: 6px;
+padding: 12px 25px;
+margin: 5px;
+text-decoration: none;
+display: inline-block;
+text-align: center;
+transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.btn-azul:hover {
+transform: scale(1.05);
+box-shadow: 0 0 15px rgba(95,168,255,0.7);
+}
+
+.server {
+display: block;
+margin-top: 10px;
+color: #ffffff;
+font-size: 20px;
+
+text-shadow:
+0 0 5px rgba(255,255,255,0.8),
+0 0 10px rgba(255,255,255,0.6),
+0 0 20px rgba(255,255,255,0.4);
+}
+
+/* BOX */
+.box {
+width: 70%;
+max-width: 950px;
+margin: 60px auto;
+background: rgba(20, 30, 60, 0.4);
+backdrop-filter: blur(10px);
+border: 1px solid rgba(255,255,255,0.15);
+border-radius: 12px;
+box-shadow: 0 0 25px rgba(0,0,0,0.4);
+}
+
+/* MENU */
+.menu {
+display: flex;
+justify-content: space-around;
+padding: 15px;
+background: rgba(0,0,0,0.25);
+backdrop-filter: blur(8px);
+border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.menu a {
+position: relative;
+color: #f5d76e;
+text-decoration: none;
+font-size: 15px;
+padding: 5px 10px;
+transition: 0.3s;
+}
+
+.menu a::after {
+content: "";
+position: absolute;
+left: 0;
+bottom: -5px;
+width: 0%;
+height: 2px;
+background: linear-gradient(90deg, gold, #00aaff);
+transition: 0.3s;
+}
+
+.menu a:hover {
+color: #fff;
+text-shadow: 0 0 10px rgba(255,255,255,0.8);
+}
+
+.menu a:hover::after {
+width: 100%;
+}
+
+.menu a.ativo {
+color: white;
+}
+
+.menu a.ativo::after {
+width: 100%;
+}
+
+/* TÍTULO */
+.conteudo h2 {
+display: flex;
+align-items: center;
+justify-content: center;
+gap: 15px;
+margin: 25px 0 30px;
+color: #f5d76e;
+font-size: 24px;
+text-shadow: 0 0 10px rgba(255,215,0,0.6);
+}
+
+.conteudo h2::before,
+.conteudo h2::after {
+content: "";
+flex: 1;
+height: 1px;
+background: linear-gradient(to right, transparent, gold);
+}
+
+.conteudo h2::after {
+background: linear-gradient(to left, transparent, gold);
+}
+
+/* SPA COM TRANSIÇÃO */
+.pagina {
+display: none;
+opacity: 0;
+transition: opacity 0.4s ease;
+}
+
+.pagina.ativa {
+display: block;
+opacity: 1;
+}
+
+/* CONTEÚDO */
+.conteudo {
+padding: 20px;
+}
+
+/* SOCIAL */
+.social-box {
+margin-top: 40px;
+height: 250px;
+background: url("img/social-bg.jpg") no-repeat center;
+background-size: cover;
+border-radius: 12px;
+overflow: hidden;
+position: relative;
+}
+
+.social-overlay {
+width: 100%;
+height: 100%;
+background: rgba(0,0,0,0.5);
+backdrop-filter: blur(3px);
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+}
+
+.social-title {
+font-size: 26px;
+color: #6ec1ff;
+text-shadow:
+0 0 10px rgba(0,150,255,0.9),
+0 0 25px rgba(0,150,255,0.6);
+margin-bottom: 25px;
+}
+
+.social-icons {
+display: flex;
+gap: 20px;
+}
+
+.social-icons img {
+width: 60px;
+height: 60px;
+border-radius: 15px;
+transition: 0.3s;
+}
+
+.social-icons img:hover {
+transform: scale(1.1);
+box-shadow: 0 0 20px rgba(255,255,255,0.6);
+}
+
+/* HIERARQUIA */
+.hierarquia {
+margin-top: 30px;
+}
+
+/* LINHA DE CIMA */
+.linha-topo {
+display: flex;
+justify-content: center;
+gap: 35px;
+}
+
+/* LINHA DE BAIXO */
+.linha-baixo {
+display: flex;
+justify-content: center;
+gap: 80px;
+margin-top: 25px;
+}
+
+.cargo {
+width: 180px;
+padding: 22px;
+text-align: center;
+border-radius: 10px;
+background: rgba(255,255,255,0.05);
+backdrop-filter: blur(5px);
+transition: 0.3s;
+color: #f5d76e;
+font-weight: bold;
+}
+
+.cargo.lider {
+transform: scale(1.25);
+border: 1px solid gold;
+box-shadow:
+0 0 15px rgba(255,215,0,0.6),
+0 0 30px rgba(255,215,0,0.3);
+}
+
+.cargo:hover {
+transform: translateY(-5px);
+}
+
+.nome {
+display: block;
+margin-top: 5px;
+margin-bottom: 8px;
+color: #fff;
+font-size: 14px;
+}
+
+.cargo p {
+font-size: 13px;
+color: #ccc;
+}
+
+/* =========================== */
+/* ===== VERSÃO MOBILE ======= */
+/* =========================== */
+
+@media (max-width: 768px) {
+
+.hero {
+height: 60vh;
+}
+
+.overlay h1 {
+font-size: 40px;
+}
+
+.overlay p {
+font-size: 18px;
+}
+
+/* BOTÕES */
+.botoes {
+display: flex;
+flex-direction: column;
+gap: 10px;
+}
+
+button,
+.btn-azul {
+width: 100%;
+}
+
+/* BOX */
+.box {
+width: 95%;
+margin-top: -50px;
+}
+
+/* MENU */
+.menu {
+flex-wrap: wrap;
+gap: 10px;
+}
+
+/* HIERARQUIA */
+.hierarquia {
+margin-top: 30px;
+}
+
+.linha-topo {
+display: flex;
+justify-content: center;
+gap: 15px;
+}
+
+.linha-baixo {
+display: flex;
+justify-content: center;
+gap: 30px;
+margin-top: 25px;
+}
+
+.cargo {
+width: 140px;
+padding: 18px;
+font-size: 12px;
+}
+
+.cargo.lider {
+transform: scale(1.12);
+}
+
+/* SOCIAL */
+.social-icons {
+flex-wrap: wrap;
+justify-content: center;
+}
+
+.social-icons img {
+width: 55px;
+}
+
+/* FUNDO MAIS LEVE */
+.bg {
+animation: bgZoom 35s ease-in-out infinite alternate;
+}
+
+}
+/* ================= LOGIN GOOGLE ================= */
+
+.login-area {
+position: absolute;
+top: 20px;
+right: 20px;
+z-index: 999;
+}
+
+.btn-login-google {
+background: white;
+color: #333;
+padding: 10px 15px;
+border-radius: 12px;
+display: flex;
+align-items: center;
+gap: 10px;
+font-weight: bold;
+cursor: pointer;
+transition: 0.3s;
+box-shadow: 0 0 10px rgba(0,0,0,0.3);
+}
+
+.btn-login-google:hover {
+transform: scale(1.05);
+box-shadow: 0 0 15px rgba(255,255,255,0.5);
+}
+
+.btn-login-google img {
+width: 20px;
+height: 20px;
+}

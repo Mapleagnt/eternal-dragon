@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ETERNAL DRAGON</title>
+
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<!-- LOGIN -->
+<div class="login-area"></div>
+
+<!-- FUNDO -->
+<video class="bg-video" autoplay muted loop playsinline>
+  <source src="video/bg.mp4" type="video/mp4">
+</video>
+
+<!-- HERO -->
+<header class="hero">
+    <div class="overlay">
+        <h1>ETERNAL DRAGON</h1>
+        <p>Domine o servidor. Torne-se um rei.</p>
+
+        <div class="botoes">
+            <button class="btn-ouro" onclick="abrirJogo()">Jogue Agora</button>
+            <span class="server">Servidor xxx</span>
+        </div>
+    </div>
+</header>
+
+<!-- BOX -->
+<section class="box">
+
+    <!-- MENU -->
+    <nav class="menu">
+        <a href="#" class="ativo" onclick="trocarPagina(event, 'inicio')">Início</a>
+        <a href="#" onclick="trocarPagina(event, 'alianca')">Aliança</a>
+        <a href="#" onclick="trocarPagina(event, 'objetivos')">Objetivos</a>
+        <a href="#" onclick="trocarPagina(event, 'recrutamento')">Recrutamento</a>
+        <a href="#" onclick="trocarPagina(event, 'comunicacao')">Central</a>
+    </nav>
+
+    <div class="conteudo">
+
+        <div id="inicio" class="pagina ativa">
+            <h2>Início</h2>
+        </div>
+
+        <div id="alianca" class="pagina">
+            <h2>Aliança</h2>
+        </div>
+
+        <div id="objetivos" class="pagina">
+            <h2>Objetivos</h2>
+        </div>
+
+        <div id="recrutamento" class="pagina">
+            <h2>Recrutamento</h2>
+        </div>
+
+        <div id="comunicacao" class="pagina">
+            <h2>Central</h2>
+        </div>
+
+    </div>
+
+</section>
+
+<script type="module" src="script.js"></script>
+
+</body>
+</html>
